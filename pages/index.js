@@ -2,7 +2,9 @@ import {useState, useEffect} from "react";
 import {ethers} from "ethers";
 import atm_abi from "../artifacts/contracts/Assessment.sol/Assessment.json";
 
+
 export default function HomePage() {
+  
   const [ethWallet, setEthWallet] = useState(undefined);
   const [account, setAccount] = useState(undefined);
   const [atm, setATM] = useState(undefined);
@@ -83,7 +85,7 @@ export default function HomePage() {
 
     // Check to see if user is connected. If not, connect to their account
     if (!account) {
-      return <button onClick={connectAccount}>Please connect your Metamask wallet</button>
+      return <button onClick={connectAccount} style={{ backgroundColor: 'indigo', color: 'yellow' }}>Please connect your Metamask wallet</button>
     }
 
     if (balance == undefined) {
@@ -92,10 +94,10 @@ export default function HomePage() {
 
     return (
       <div>
-        <p>Your Account: {account}</p>
-        <p>Your Balance: {balance}</p>
-        <button onClick={deposit}>Deposit 1 ETH</button>
-        <button onClick={withdraw}>Withdraw 1 ETH</button>
+        <p style={{ fontWeight: 'bold' }}>Your Account: {account}</p>
+        <p style={{ fontWeight: 'bold' }}>Your Current Balance is : {balance}</p>
+        <button onClick={deposit} style={{ backgroundColor: 'green', color: 'white' }}>Deposit 1 ETH</button>
+        <button onClick={withdraw}style={{ backgroundColor: 'red', color: 'white' }}>Withdraw 1 ETH</button>
       </div>
     )
   }
@@ -103,15 +105,17 @@ export default function HomePage() {
   useEffect(() => {getWallet();}, []);
 
   return (
+
     <main className="container">
-      <header><h1>Welcome to the Metacrafters ATM!</h1></header>
+      <header><h1 style={{ backgroundColor: 'black', color: 'white' }}> --- Welcome to the Metacrafters Crypto ATM! ---</h1></header>
       {initUser()}
       <style jsx>{`
         .container {
-          text-align: center
+          text-align: center;
+          background-color: lightblue;
         }
       `}
       </style>
     </main>
-  )
-}
+  );
+};
